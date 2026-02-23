@@ -1,0 +1,18 @@
+const int buttonPin = 2; //Definir constante entera para PIN 2
+const int ledPin = 7; 		//Definir constante entera para PIN 7
+int buttonState = 0;		//Definir entero para variable de almacenamiento
+
+void setup() {
+pinMode(ledPin, OUTPUT); 	//Definir LED como salida
+pinMode(buttonPin, INPUT); //Definir botón como entrada
+}
+
+void loop() {
+buttonState = digitalRead(buttonPin);	//Almacenar estado actual del botón 
+
+if (buttonState == HIGH) {		//Cuando el botón este presionado, se enciende el LED (1-ON)
+digitalWrite(ledPin, HIGH);
+} else {
+digitalWrite(ledPin, LOW); //LED apagado en caso contrario (0-OFF)
+}
+}

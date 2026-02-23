@@ -1,0 +1,27 @@
+int PULSADOR = 2; 		//Definar entero para PIN 2
+int LED = 7; 				//Definir entero para PIN 7
+bool buttonState = false;		//Booleano usado como indicador 
+
+void setup(){ 
+
+pinMode(PULSADOR, INPUT);  //Boton como entrada
+pinMode(LED, OUTPUT); 	//LED como salida
+digitalWrite(LED, LOW); 		//Predefinir OFF para LED
+
+ } 
+
+void loop (){ 
+
+while(digitalRead(PULSADOR) == LOW){   // Funcion que espera hasta presionar el boton
+ }
+
+if (buttonState == false) {		//La primera vez encenderá el LED
+digitalWrite(LED, HIGH);
+buttonState = true;			//Intercambia el booleano para la siguiente pulsación 
+} else {
+digitalWrite(LED, LOW);		//La segunda vez apagara el LED
+buttonState = false;			//Devuelve el estado original, por lo que la próxima pulsación encenderá
+}
+while(digitalRead(PULSADOR) == HIGH){ //Funcion anti rebote para mejorar rendimiento
+ }
+}
