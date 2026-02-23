@@ -1,0 +1,10 @@
+void setup() {
+  pinMode(13, OUTPUT); // Inicializar PIN 13 o LED integrado como salida
+}
+
+void loop() {
+  digitalWrite(13, HIGH); //Cambiar estado PIN 13 a 1 (Encendido-OM)
+  delay(1000); 			// Pausa de 1 segundo (1000ms)
+  digitalWrite(13, LOW); // Cambiar estado a 0 (Apagado-OFF)
+  delay(1000);
+}
