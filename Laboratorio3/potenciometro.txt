@@ -1,0 +1,13 @@
+int pinLED = 3; 	//PIN 3 para LED
+int pinPOT = A0;  //Entrada analógica A0 potenciometro
+
+void setup() { 
+  pinMode(pinLED, OUTPUT); //Inicializa LED como salida
+} 
+
+void loop() { 
+  int valor = analogRead(pinPOT);	//Se almacena el valor de 10 bits del potenciómetro (0, 1023)
+  int PWM = map(valor, 0, 1023, 0, 255); //Se escala el valor anterior a 8 bits (0, 255)
+  analogWrite(pinLED, PWM);	//El LED lee el valor (0, OFF - 255 ON)
+  delay(50); //Pausa puqueña de rendimiento
+} 
