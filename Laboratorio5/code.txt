@@ -1,0 +1,36 @@
+#include <DHT.h>
+#include <DHT_U.h>
+#include <LiquidCrystal_I2C.h>
+
+LiquidCrystal_I2C lcd(0x27,16,2);
+
+int DHTPIN = 8;
+int T_DHT;
+int HUMEDAD;
+
+DHT dht (DHTPIN, DHT11); 
+  void setup(){
+  Serial.begin(9600);
+  dht.begin();
+  lcd.init();
+  lcd.backlight();
+}
+
+void loop(){
+  T_DHT = dht.readTemperature();
+  HUMEDAD = dht.readHumidity(); 
+
+  Serial.print("Temperatura DHT11: ");
+  Serial.print(T_DHT);
+  Serial.print(" | Humedad DHT11: ");
+  Serial.println(HUMEDAD);
+
+  lcd.setCursor(0,0);
+  lcd.print("DHT11: ");
+  lcd.print(T_DHT, 1);
+  lcd.print("C");
+  lcd.print(" H: ");
+  lcd.print(HUMEDAD);
+
+  delay(1000);
+}
