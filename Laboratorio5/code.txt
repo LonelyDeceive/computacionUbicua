@@ -1,36 +1,39 @@
-#include <DHT.h>
-#include <DHT_U.h>
-#include <LiquidCrystal_I2C.h>
+#include <DHT.h>                     //Importa libreria del sensor DHT
+#include <LiquidCrystal_I2C.h>        //Importa libreria LiquidCrystal con I2C
 
-LiquidCrystal_I2C lcd(0x27,16,2);
+LiquidCrystal_I2C lcd(0x27,16,2);     //Inicializa I2C con direccion 0x27 con 16 columnas y 2 filas del LCD
 
-int DHTPIN = 8;
-int T_DHT;
-int HUMEDAD;
+int DHTPIN = 8;            //Declara PIN donde esta conectado la DATA del sensor DHT, PIN 8 salida digital
+float T_DHT;               //Declaracion de numero real T_DHT para almacenar informacion
+int HUMEDAD;               //Declaracion de numero entero HUMEDAD para almacenar informacion
 
-DHT dht (DHTPIN, DHT11); 
-  void setup(){
-  Serial.begin(9600);
-  dht.begin();
-  lcd.init();
-  lcd.backlight();
+DHT dht (DHTPIN, DHT11);    //Se usa la libreria DHT para declarar la variable dht con parametros del numero PIN DHTPIN (PIN 8) y tipo de sensor DHT11
+
+void setup(){                //Bloque de declaraciones  
+  Serial.begin(9600);        //Declaracion de inicializacion de monitor serial 
+  dht.begin();               //Declaracion de inicializacion de objeto dht (Sensor DHT11)
+  lcd.init();                //Declaracion de inicalizacion LCD
+  lcd.backlight();           //Enciende luz de fondo pantalla LCD
+  lcd.clear();               //Limpia la pantalla LCD de cualquier informacion
 }
 
 void loop(){
-  T_DHT = dht.readTemperature();
-  HUMEDAD = dht.readHumidity(); 
+  T_DHT = dht.readTemperature();        //Variable T_DHT almacena informacion de temperatura del sensor DHT
+  HUMEDAD = dht.readHumidity();         //Variable HUMEDAD almacena informacion de humedad del sensor DHT
 
-  Serial.print("Temperatura DHT11: ");
-  Serial.print(T_DHT);
-  Serial.print(" | Humedad DHT11: ");
-  Serial.println(HUMEDAD);
+  Serial.print("Temperatura DHT11: ");        //Imprime "Temperatura DHT11: " en el monitor serial
+  Serial.print(T_DHT);                        //Imprime valor de variable T_DHT
+  Serial.print(" | Humedad DHT11: ");         //Imprime " | Humedad DHT1: " en el monitor serial
+  Serial.println(HUMEDAD);                    //Imprime valor de variable HUMEDAD
 
-  lcd.setCursor(0,0);
-  lcd.print("DHT11: ");
-  lcd.print(T_DHT, 1);
-  lcd.print("C");
-  lcd.print(" H: ");
-  lcd.print(HUMEDAD);
+  lcd.setCursor(2,0);                   //Selecciona la segunda columna de la primera fila para empezar a escribir en la pantalla LCD
+  lcd.print("DHT11: ");                //Escribe "DHT11: " en la pantalla LCD
+  lcd.print(T_DHT, 1);                //Escribe el valor de T_DHT con un solo numero decimal en la pantalla LCD
+  lcd.print("C");                    //Escribe "C" en la pantalla LCD
+  lcd.setCursor(2,1);                //Selecciona la segunda columna de la segunda fila para escribir
+  lcd.print("Humedad: ");           //Escribe "Humedad: " en el LCD
+  lcd.print(HUMEDAD);              //Escribe valor de HUMEDAD en el LCD
+  lcd.print("%");                 //Escribe "%" en el LCD
 
-  delay(1000);
+  delay(1000);              //Tiempo de espera de 1 segundo (1000ms)
 }
