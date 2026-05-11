@@ -1,4 +1,4 @@
-#include <DHT.h>                            // Librería para manejar sensores DHT
+ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddf#include <DHT.h>                            // Librería para manejar sensores DHT
 #include <DHT_U.h>                      // Librería unificada para sensores DHT
 #include <LiquidCrystal_I2C.h>                // Librería para controlar pantallas LCD I2C
 
